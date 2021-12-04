@@ -1,0 +1,8 @@
+apply from: "$rootDir/common-kotlin-library.gradle"
+
+dependencies {
+
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"

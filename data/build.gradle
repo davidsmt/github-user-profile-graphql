@@ -1,0 +1,17 @@
+apply from: "$rootDir/common-android-library.gradle"
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.apollographql.apollo'
+
+dependencies {
+    implementation project(Modules.domain)
+
+    implementation Libraries.apolloRuntime
+    implementation Libraries.apolloCoroutines
+
+    implementation Libraries.loggingInterceptor
+}
+
+apollo {
+    generateKotlinModels.set(true)
+}
+
