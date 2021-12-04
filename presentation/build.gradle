@@ -6,4 +6,8 @@ dependencies {
     implementation Libraries.lifecycleRuntime
     implementation Libraries.lifecycleLiveData
     kapt Libraries.lifecycleCompiler
+
+    testImplementation TestLibraries.junit
+    testImplementation TestLibraries.coroutines
+    testImplementation TestLibraries.mockk
 }

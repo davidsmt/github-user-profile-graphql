@@ -7,7 +7,8 @@ import dagger.Component
 @Component(
     dependencies = [DataComponent::class],
     modules = [
-        PresentationViewModelModule::class
+        PresentationViewModelModule::class,
+        CoroutineModule::class
     ]
 )
 @Fragment

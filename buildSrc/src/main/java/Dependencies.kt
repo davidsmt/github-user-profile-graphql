@@ -49,6 +49,7 @@ object Versions {
 
     const val junit = "4.13"
     const val assertjCore = "3.15.0"
+    const val mockk = "1.12.1"
 }
 
 object Plugins {
@@ -103,6 +104,8 @@ object SupportLibraries {
 
 object TestLibraries {
     const val junit = "junit:junit:${Versions.junit}"
+    const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     const val assertjCore = "org.assertj:assertj-core:${Versions.assertjCore}"
     const val lifecycleTesting = "androidx.arch.core:core-testing:${Versions.lifecycle}"
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
 }
