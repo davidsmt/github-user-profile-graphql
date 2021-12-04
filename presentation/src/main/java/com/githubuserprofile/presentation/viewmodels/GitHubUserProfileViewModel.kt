@@ -6,17 +6,18 @@ import androidx.lifecycle.viewModelScope
 import com.githubuserprofile.domain.models.GitHubUserProfile
 import com.githubuserprofile.domain.models.ResourceStatus
 import com.githubuserprofile.domain.usecases.GetGitHubUserProfileUseCase
+import com.githubuserprofile.presentation.coroutines.CoroutineContextProvider
 import com.githubuserprofile.presentation.mappers.GitHubUserProfileUiMapper
 import com.githubuserprofile.presentation.models.GitHubUserProfileUiModel
 import com.githubuserprofile.presentation.models.UiState
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class GitHubUserProfileViewModel @Inject constructor(
-    private val getGitHubUserProfileUseCase: GetGitHubUserProfileUseCase
+    private val getGitHubUserProfileUseCase: GetGitHubUserProfileUseCase,
+    private val coroutineContextProvider: CoroutineContextProvider
 ) : ViewModel() {
 
     private val state: MutableStateFlow<UiState<GitHubUserProfileUiModel>> =
@@ -26,7 +27,7 @@ class GitHubUserProfileViewModel @Inject constructor(
     private val mapper = GitHubUserProfileUiMapper()
 
     fun start() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(coroutineContextProvider.io()) {
             getGitHubUserProfileUseCase.invoke().collect {
                 updateUiState(it)
             }
@@ -47,7 +48,7 @@ class GitHubUserProfileViewModel @Inject constructor(
     }
 
     fun onRefresh() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(coroutineContextProvider.io()) {
             getGitHubUserProfileUseCase.invoke(true).collect {
                 updateUiState(it)
             }
