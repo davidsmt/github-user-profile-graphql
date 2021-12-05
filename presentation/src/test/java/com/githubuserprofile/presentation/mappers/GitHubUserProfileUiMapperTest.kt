@@ -1,7 +1,9 @@
 package com.githubuserprofile.presentation.mappers
 
 import com.githubuserprofile.domain.models.GitHubRepository
+import com.githubuserprofile.domain.models.GitHubRepositoryOwner
 import com.githubuserprofile.domain.models.GitHubUserProfile
+import com.githubuserprofile.presentation.models.GitHubRepositoryOwnerUiModel
 import com.githubuserprofile.presentation.models.GitHubRepositoryUiModel
 import com.githubuserprofile.presentation.models.GitHubUserProfileUiModel
 import org.junit.Assert.assertEquals
@@ -33,7 +35,14 @@ class GitHubUserProfileUiMapperTest {
         followingTotalCount = 2,
         login = "login",
         name = "name",
-        pinnedItems = listOf(GitHubRepository(id = "id", name = "name")),
+        pinnedItems = listOf(GitHubRepository(
+            id = "id",
+            name = "name",
+            description = "description",
+            owner = GitHubRepositoryOwner(id = "id", login = "login", avatarUrl = "avatarUrl"),
+            language = "Kotlin",
+            stargazerCount = 5
+        )),
         starredRepositories = emptyList(),
         topRepositories = emptyList()
     )
@@ -45,7 +54,14 @@ class GitHubUserProfileUiMapperTest {
         followingTotalCount = "2",
         login = "login",
         name = "name",
-        pinnedItems = listOf(GitHubRepositoryUiModel(id = "id", name = "name")),
+        pinnedItems = listOf(GitHubRepositoryUiModel(
+            id = "id",
+            name = "name",
+            description = "description",
+            owner = GitHubRepositoryOwnerUiModel(id = "id", login = "login", avatarUrl = "avatarUrl"),
+            language = "Kotlin",
+            stargazerCount = "5"
+        )),
         starredRepositories = emptyList(),
         topRepositories = emptyList()
     )

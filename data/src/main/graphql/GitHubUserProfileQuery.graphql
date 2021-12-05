@@ -16,6 +16,18 @@ query GetGitHubUserProfile($userProfile: String!) {
                 ... on Repository {
                     id
                     name
+                    description
+                    owner {
+                        login
+                        id
+                        avatarUrl
+                    }
+                    languages(first: 1) {
+                        nodes {
+                            name
+                        }
+                    }
+                    stargazerCount
                 }
             }
         }
@@ -24,6 +36,18 @@ query GetGitHubUserProfile($userProfile: String!) {
             nodes {
                 id
                 name
+                description
+                owner {
+                    login
+                    id
+                    avatarUrl
+                }
+                languages(first: 1) {
+                    nodes {
+                        name
+                    }
+                }
+                stargazerCount
             }
         }
         starredRepositories(first: 10, orderBy: {field: STARRED_AT, direction: ASC}) {
@@ -31,6 +55,18 @@ query GetGitHubUserProfile($userProfile: String!) {
             nodes {
                 id
                 name
+                description
+                owner {
+                    login
+                    id
+                    avatarUrl
+                }
+                languages(first: 1) {
+                    nodes {
+                        name
+                    }
+                }
+                stargazerCount
             }
         }
     }

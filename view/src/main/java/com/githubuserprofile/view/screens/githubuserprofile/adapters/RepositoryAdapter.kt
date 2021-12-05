@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.githubuserprofile.presentation.models.GitHubRepositoryUiModel
 import com.githubuserprofile.view.databinding.LayoutRepositoryItemBinding
 
@@ -35,13 +36,19 @@ class RepositoryAdapter(
 
         fun bind(uiModel: GitHubRepositoryUiModel) {
             with(binding) {
-                repositoryUserProfileLogin.text = uiModel.name
+                Glide
+                    .with(binding.root.context)
+                    .load(uiModel.owner.avatarUrl)
+                    .circleCrop()
+                    .into(binding.repositoryUserProfileAvatar)
+
+                repositoryUserProfileLogin.text = uiModel.owner.login
 
                 repositoryTitle.text = uiModel.name
-                repositoryDescription.text = uiModel.name
+                repositoryDescription.text = uiModel.description
 
-                repositoryFavoritesCounter.text = uiModel.name
-                repositoryTopicLabel.text = uiModel.name
+                repositoryFavoritesCounter.text = uiModel.stargazerCount
+                repositoryLanguageLabel.text = uiModel.language
 
                 root.setOnClickListener {
                     listener.onItemClicked(adapterPosition)

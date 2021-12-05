@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/repository_description" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/repository_topic_label"
+        android:id="@+id/repository_language_label"
         style="@style/Label.Regular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
