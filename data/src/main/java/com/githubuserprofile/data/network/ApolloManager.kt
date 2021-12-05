@@ -64,7 +64,7 @@ class ApolloManager {
         private const val BASE_SERVER_URL = "https://api.github.com/graphql"
 
         // User your own GitHub personal token here
-        private const val TOKEN = "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"
+        private const val TOKEN = "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"
     }
 
 }

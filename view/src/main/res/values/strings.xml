@@ -1,12 +1,14 @@
 <resources>
 
     <!--GitHub User Profile screen-->
+    <string name="profile">Profile</string>
     <string name="followers">followers</string>
     <string name="following">following</string>
     <string name="pinned">Pinned</string>
     <string name="top_repositories">Top Repositories</string>
     <string name="starred_repositories">Starred Repositories</string>
     <string name="view_all"><u>View all</u></string>
+    <string name="no_results">No results</string>
 
     <!--Errors-->
     <string name="socket_time_out_error">Request timed out while trying to connect. Please ensure you have a strong signal and try again.</string>

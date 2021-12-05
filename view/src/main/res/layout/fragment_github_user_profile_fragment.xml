@@ -46,13 +46,26 @@
                     app:layout_constraintGuide_begin="@dimen/space_big" />
 
                 <!--User profile header-->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/user_profile_title"
+                    style="@style/Header.Section"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_normal"
+                    android:text="@string/profile"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/user_profile_avatar"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/avatar_size"
+                    android:layout_marginTop="@dimen/space_normal"
                     android:adjustViewBounds="true"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                    app:layout_constraintTop_toTopOf="@+id/guideline_top"
+                    app:layout_constraintTop_toBottomOf="@+id/user_profile_title"
                     tools:src="@tools:sample/avatars" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -164,6 +177,7 @@
                     android:layout_marginTop="@dimen/space_normal"
                     android:paddingStart="@dimen/space_normal"
                     android:paddingTop="@dimen/space_normal"
+                    android:paddingEnd="0dp"
                     android:paddingBottom="@dimen/space_normal"
                     android:text="@string/view_all"
                     android:textAlignment="center"
@@ -210,6 +224,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="@dimen/space_normal"
                     android:paddingTop="@dimen/space_normal"
+                    android:paddingEnd="0dp"
                     android:paddingBottom="@dimen/space_normal"
                     android:text="@string/view_all"
                     android:textAlignment="center"
@@ -298,11 +313,13 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/empty_content"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Empty"
+        style="@style/Header.Section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_results"
+        android:textAlignment="center"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
