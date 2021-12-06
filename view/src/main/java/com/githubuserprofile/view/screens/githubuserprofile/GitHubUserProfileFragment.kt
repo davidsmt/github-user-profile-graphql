@@ -16,7 +16,8 @@ import com.githubuserprofile.presentation.models.UiState
 import com.githubuserprofile.presentation.viewmodels.GitHubUserProfileViewModel
 import com.githubuserprofile.view.R
 import com.githubuserprofile.view.databinding.FragmentGithubUserProfileFragmentBinding
-import com.githubuserprofile.view.di.ViewApplication
+import com.githubuserprofile.view.di.ViewComponent
+import com.githubuserprofile.view.di.ViewComponentFactoryProvider
 import com.githubuserprofile.view.mappers.ErrorsMapper
 import com.githubuserprofile.view.screens.githubuserprofile.adapters.RepositoryAdapter
 import com.githubuserprofile.view.utils.SpaceItemDecoration
@@ -39,9 +40,13 @@ class GitHubUserProfileFragment : Fragment() {
     private lateinit var topRepositoriesAdapter: RepositoryAdapter
     private lateinit var starredRepositoriesAdapter: RepositoryAdapter
 
+    private fun getViewComponent(): ViewComponent =
+        (requireContext().applicationContext as ViewComponentFactoryProvider).provideViewComponentFactory()
+            .create()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ViewApplication.getViewComponent(requireContext()).inject(this)
+        getViewComponent().inject(this)
     }
 
     override fun onCreateView(

@@ -46,4 +46,6 @@ dependencies {
 
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
+
+    implementation Libraries.fragmentKtx
 }

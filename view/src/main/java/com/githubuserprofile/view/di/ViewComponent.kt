@@ -1,24 +1,21 @@
 package com.githubuserprofile.view.di
 
-import com.githubuserprofile.data.di.DataComponent
 import com.githubuserprofile.view.screens.githubuserprofile.GitHubUserProfileFragment
-import dagger.Component
+import dagger.Subcomponent
 
-@Component(
-    dependencies = [DataComponent::class],
-    modules = [
-        PresentationViewModelModule::class,
-        CoroutineModule::class
-    ]
-)
-@Fragment
+@Subcomponent
+@FragmentScope
 interface ViewComponent {
 
-    @Component.Factory
+    @Subcomponent.Factory
     interface Factory {
-        fun create(dataComponent: DataComponent): ViewComponent
+        fun create(): ViewComponent
     }
 
     fun inject(fragment: GitHubUserProfileFragment)
 
+}
+
+interface ViewComponentFactoryProvider {
+    fun provideViewComponentFactory(): ViewComponent.Factory
 }

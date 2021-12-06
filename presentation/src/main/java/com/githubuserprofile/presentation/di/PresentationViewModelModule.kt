@@ -1,4 +1,4 @@
-package com.githubuserprofile.view.di
+package com.githubuserprofile.presentation.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,24 +1,19 @@
 package com.githubuserprofile.app
 
 import android.app.Application
-import com.githubuserprofile.data.di.DaggerDataComponent
-import com.githubuserprofile.data.di.DataApplication
-import com.githubuserprofile.data.di.DataComponent
-import com.githubuserprofile.view.di.DaggerViewComponent
-import com.githubuserprofile.view.di.ViewApplication
+import com.githubuserprofile.app.di.AppComponent
+import com.githubuserprofile.app.di.DaggerAppComponent
 import com.githubuserprofile.view.di.ViewComponent
+import com.githubuserprofile.view.di.ViewComponentFactoryProvider
 
-class GitHubUserProfileApplication : Application(), DataApplication, ViewApplication {
+class GitHubUserProfileApplication : Application(), ViewComponentFactoryProvider {
 
     // DI components
-    private val _dataComponent: DataComponent by lazy {
-        DaggerDataComponent.factory().create()
+    private val _appComponent: AppComponent by lazy {
+        DaggerAppComponent.factory().create()
     }
 
-    private val _viewComponent: ViewComponent by lazy {
-        DaggerViewComponent.factory().create(_dataComponent)
-    }
+    override fun provideViewComponentFactory(): ViewComponent.Factory =
+        _appComponent.viewComponentFactory()
 
-    override fun getDataComponent(): DataComponent = _dataComponent
-    override fun getViewComponent(): ViewComponent = _viewComponent
 }

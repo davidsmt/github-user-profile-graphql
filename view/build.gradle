@@ -9,8 +9,6 @@ android {
 }
 
 dependencies {
-    implementation project(Modules.data)
-    implementation project(Modules.domain)
     implementation project(Modules.presentation)
 
     implementation SupportLibraries.appcompat

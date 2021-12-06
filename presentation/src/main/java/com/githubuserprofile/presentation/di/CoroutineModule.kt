@@ -1,4 +1,4 @@
-package com.githubuserprofile.view.di
+package com.githubuserprofile.presentation.di
 
 import com.githubuserprofile.presentation.coroutines.CoroutineContextProvider
 import com.githubuserprofile.presentation.coroutines.DefaultCoroutineContextProvider

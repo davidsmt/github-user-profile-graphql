@@ -49,7 +49,7 @@ class GitHubUserProfileViewModel @Inject constructor(
 
     fun onRefresh() {
         viewModelScope.launch(coroutineContextProvider.io()) {
-            getGitHubUserProfileUseCase.invoke(true).collect {
+            getGitHubUserProfileUseCase(true).collect {
                 updateUiState(it)
             }
         }
