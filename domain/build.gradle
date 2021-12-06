@@ -1,7 +1,15 @@
 apply from: "$rootDir/common-kotlin-library.gradle"
 
-dependencies {
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
 
+dependencies {
+    testImplementation TestLibraries.junit
+    testImplementation TestLibraries.coroutines
+    testImplementation TestLibraries.mockk
 }
 
 sourceCompatibility = "8"

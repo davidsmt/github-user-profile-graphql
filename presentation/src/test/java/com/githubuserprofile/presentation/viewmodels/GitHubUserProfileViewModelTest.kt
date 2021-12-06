@@ -15,22 +15,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 class GitHubUserProfileViewModelTest {
 
     private lateinit var getGitHubUserProfileUseCase: GetGitHubUserProfileUseCase
     private lateinit var viewModel: GitHubUserProfileViewModel
 
-    @ExperimentalCoroutinesApi
     private val coroutineDispatcher = TestCoroutineDispatcher()
 
-    @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
         ArchTaskExecutor.getInstance().setDelegate(TestTaskExecutor())
@@ -44,7 +45,6 @@ class GitHubUserProfileViewModelTest {
         )
     }
 
-    @ExperimentalCoroutinesApi
     @Test
     fun `when start and data has not been loaded yet then loading should be shown`() =
         coroutineDispatcher.runBlockingTest {
@@ -67,7 +67,6 @@ class GitHubUserProfileViewModelTest {
             assertThat(stateObserver.history[0], instanceOf(UiState.Loading::class.java))
         }
 
-    @ExperimentalCoroutinesApi
     @Test
     fun `when start and data has been loaded then content should be shown`() =
         coroutineDispatcher.runBlockingTest {
@@ -93,7 +92,6 @@ class GitHubUserProfileViewModelTest {
             assertThat(stateObserver.history[1], instanceOf(UiState.Loaded::class.java))
         }
 
-    @ExperimentalCoroutinesApi
     @Test
     fun `when start and data has been loaded and it is null then empty should be shown`() =
         coroutineDispatcher.runBlockingTest {
@@ -119,7 +117,6 @@ class GitHubUserProfileViewModelTest {
             assertThat(stateObserver.history[1], instanceOf(UiState.Empty::class.java))
         }
 
-    @ExperimentalCoroutinesApi
     @Test
     fun `when start and data has not been loaded yet then error should be shown`() =
         coroutineDispatcher.runBlockingTest {
@@ -143,6 +140,11 @@ class GitHubUserProfileViewModelTest {
             assertThat(stateObserver.history[0], instanceOf(UiState.Loading::class.java))
             assertThat(stateObserver.history[1], instanceOf(UiState.Error::class.java))
         }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
 
     private fun buildGitHubUserProfile() = GitHubUserProfile(
         avatarUrl = "avatarUrl",
